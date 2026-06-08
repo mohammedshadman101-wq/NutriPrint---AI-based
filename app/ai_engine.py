@@ -1,10 +1,12 @@
 import google.generativeai as genai
+import os
 
-# Configure your API key here
-genai.configure(api_key="YOUR_GEMINI_API_KEY")
+# Set your API key in your Render Environment Variables
+genai.configure(api_key=os.environ.get("GEMINI_API_KEY"))
 
-def get_ai_meal_plan(student_data):
+def generate_nutritional_matrix(student_bmi):
     model = genai.GenerativeModel("gemini-1.5-flash")
-    prompt = f"Create a weekly Karnataka-style meal plan under 50 INR per meal for a student with BMI: {student_data['bmi']}"
+    prompt = f"Given a student with BMI {student_bmi}, generate a weekly meal plan using local Karnataka ingredients under 50 INR. Format as a structured nutritional report."
+    
     response = model.generate_content(prompt)
     return response.text
