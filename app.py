@@ -65,7 +65,7 @@ def generate_menu():
     data = request.get_json()
     institution = data.get('institution', 'General Institution')
     
-    # Logic: Dynamic algorithm to simulate AI-driven menu generation
+    # AI Logic: Dynamic algorithm to simulate AI-driven menu generation
     categories = ['Breakfast', 'Lunch', 'Snack', 'Dinner']
     menu_data = {
         cat: [f"{cat} Option {i+1} for {institution}" for i in range(6)] 
@@ -75,5 +75,5 @@ def generate_menu():
     return jsonify({"institution": institution, "menu": menu_data})
 
 if __name__ == '__main__':
-    # Use port 5000 for local development
-    app.run(debug=True, port=5000)
+    # Flask application entry point
+    app.run()
