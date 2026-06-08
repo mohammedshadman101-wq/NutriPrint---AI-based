@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriPrint AI Enterprise</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo-block">
+                <h1>NutriPrint <span style="color: var(--accent);">AI</span></h1>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a class="nav-link active" data-target="home-section">Home</a></li>
+                    <li><a class="nav-link" data-target="generator-section">Menu Blueprint Engine</a></li>
+                    <li><a class="nav-link" data-target="dashboard-section">Health Analytics</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container" style="padding-top: 2rem;">
+        <section id="home-section" class="app-section active">
+            <div class="hero-banner">
+                <h2>Automated Institutional Dietetics & <br><span>Predictive Health Management</span></h2>
+                <p class="hero-subtitle">Premium operational workspace optimized for nutritional compliance tracking and vector print asset pipelines.</p>
+                <button class="btn-primary" onclick="document.querySelector('[data-target=generator-section]').click()">Launch Planner Engine</button>
+            </div>
+        </section>
+
+        <section id="generator-section" class="app-section">
+            <div class="generator-layout">
+                <div class="form-panel">
+                    <h3>Matrix Setup Controls</h3>
+                    <form id="blueprintEngineForm">
+                        <div class="form-group">
+                            <label>Target Institutional Body</label>
+                            <input type="text" id="institutionName" class="form-control" placeholder="e.g., Central District School" required>
+                        </div>
+                        <button type="submit" class="btn-primary" style="width: 100%;">Compile Optimization Matrix</button>
+                    </form>
+                </div>
+
+                <div class="preview-panel">
+                    <div style="padding: 1rem; background: var(--surface-muted); display: flex; justify-content: space-between; align-items: center;">
+                        <strong>A4 Live Generation Sandbox</strong>
+                        <button class="btn-primary" style="padding: 0.5rem 1rem;" onclick="window.print()">Print Vector A4 Sheet</button>
+                    </div>
+                    <div class="poster-container-scroll">
+                        <div class="a4-poster" id="livePosterAsset">
+                            <h2 id="renderInstitutionTitle" style="border-bottom: 2px solid var(--text-main); padding-bottom: 0.5rem;">INSTITUTIONAL BODY COHORT</h2>
+                            <div class="poster-grid" id="posterWeeklyGridTarget">
+                                <div class="grid-cell grid-header-cell">Vector</div>
+                                <div class="grid-cell grid-header-cell">Monday</div>
+                                <div class="grid-cell grid-header-cell">Tuesday</div>
+                                <div class="grid-cell grid-header-cell">Wednesday</div>
+                                <div class="grid-cell grid-header-cell">Thursday</div>
+                                <div class="grid-cell grid-header-cell">Friday</div>
+                                <div class="grid-cell grid-header-cell">Saturday</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="dashboard-section" class="app-section">
+            <div class="dashboard-grid-layout">
+                <div class="students-table-card">
+                    <div style="padding: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+                        <h3>Active Monitoring Registry</h3>
+                        <button class="btn-primary" id="registerStudentBtn">Enroll Profile Record</button>
+                    </div>
+                    <table class="dashboard-table">
+                        <thead>
+                            <tr>
+                                <th>Profile ID</th>
+                                <th>Age Scale</th>
+                                <th>Height / Mass</th>
+                                <th>BMI Score Vector</th>
+                                <th>System Status Assessment</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentMetricsTableBody">
+                            <tr>
+                                <td><strong>#NP-9402</strong></td>
+                                <td>8 Years</td>
+                                <td>124.2 cm / 21.4 kg</td>
+                                <td>13.88 kg/m²</td>
+                                <td><span style="color: var(--success); font-weight: 700;">Target Optimum Nominal</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
