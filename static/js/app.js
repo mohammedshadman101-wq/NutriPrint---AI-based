@@ -1,32 +1,35 @@
-// Replace your existing form submit listener in app.js with this:
-this.blueprintForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const institution = document.getElementById('institutionName').value;
-    
-    // Fetch the AI-generated matrix from our new Python engine
-    const response = await fetch('/api/generate-menu', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ institution })
-    });
-    const data = await response.json();
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('blueprintForm');
+    const grid = document.getElementById('weeklyGrid');
+    const title = document.getElementById('institutionTitle');
 
-    // Update the UI
-    this.institutionTitle.textContent = data.institution.toUpperCase();
-    document.querySelectorAll('.meal-injected-cell').forEach(el => el.remove());
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const institution = document.getElementById('institutionName').value;
 
-    Object.entries(data.menu).forEach(([category, meals]) => {
-        const labelCell = document.createElement('div');
-        labelCell.className = 'grid-cell meal-injected-cell';
-        labelCell.style.fontWeight = '700';
-        labelCell.innerText = category;
-        this.weeklyGridTarget.appendChild(labelCell);
+        const response = await fetch('/api/generate-menu', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ institution })
+        });
+        const data = await response.json();
 
-        meals.forEach(meal => {
-            const cell = document.createElement('div');
-            cell.className = 'grid-cell meal-injected-cell';
-            cell.innerText = meal;
-            this.weeklyGridTarget.appendChild(cell);
+        title.textContent = data.institution.toUpperCase();
+        grid.innerHTML = ''; // Clear old
+
+        Object.entries(data.menu).forEach(([cat, meals]) => {
+            const header = document.createElement('div');
+            header.className = 'grid-cell';
+            header.style.fontWeight = 'bold';
+            header.innerText = cat;
+            grid.appendChild(header);
+
+            meals.forEach(m => {
+                const cell = document.createElement('div');
+                cell.className = 'grid-cell';
+                cell.innerText = m;
+                grid.appendChild(cell);
+            });
         });
     });
 });
